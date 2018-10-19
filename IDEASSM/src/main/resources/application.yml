@@ -1,0 +1,30 @@
+server:
+  context-path: /IDEASSM
+  jsp-servlet:    #jsp页面热部署
+    init-parameters:
+      development: true
+  port: 9292
+  #port: 端口号配置分发到小配置文件中
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mysql-
+    username: root
+    password: 123456
+  mvc:
+    view:   #视图解析，以为springboot 默认不支持jsp页面，需要配置支持
+      prefix: /         #前缀
+      suffix: .jsp      #后缀
+  http:
+    encoding:   #post请求的编解码
+      force: true
+      charset: utf-8
+  aop:    #基于注解的切入方式---代理方式 (使用的代理方式必须为cglib)
+    proxy-target-class: true   #springboot默认代理方式为cglib   false为jdk   true为cglib
+
+mybatis:
+  mapper-locations: springboot/dao/*Dao.xml  #配置加载mapper文件的位置
+  type-aliases-package: springboot.entity    #给实体类起别名
+

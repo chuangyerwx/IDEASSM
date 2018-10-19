@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--    logback 和 log4j 唯一的区别就是文件后缀的不同
+        logback的后缀为xml
+        log4j的后缀为proerties
+        error - warn - info - debug  从日志级别从高到低  日志打印量从少到多
+        父日志 root logger (stdout)
+        子日志 logger
+ -->
+<configuration>
+            <!-- 日志输出位置为控制台 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+                <!-- 自定义日志规则 -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+                    <!-- p输出优先级 d输出时间点的日期或时间 m输出代码中指定的消息 n换行 -->
+            <pattern> [%p] %d{yyyy-MM-dd HH:mm:ss} %m %n  </pattern>
+        </layout>
+    </appender>
+    <root level="error">       <!-- 父日志 -->
+        <appender-ref ref="stdout"/>    <!-- 父日志按照上述的加载规则 -->
+    </root>
+    <logger name="springboot.dao" level="DEBUG"/>   <!-- 子日志 -->
+</configuration>
